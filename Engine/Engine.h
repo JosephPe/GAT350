@@ -5,6 +5,8 @@
 #include "Math/Vector2.h"
 #include "Math/MathUtils.h"
 #include "Math/ModelComponent.h"
+#include "glm/glm.hpp"
+
 #include "Renderer/Random.h"
 
 #include "Framework/Game.h"
@@ -15,6 +17,7 @@
 #include "Renderer/Font.h"
 #include "Renderer/Model.h"
 #include "Renderer/Text.h"
+#include "Renderer/Shader.h"
 
 #include "Input/InputSystem.h"
 

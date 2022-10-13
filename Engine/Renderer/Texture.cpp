@@ -43,7 +43,7 @@ namespace anthemum
 		return true;
 	}
 
-	bool Texture::Create(Renderer& renderer, const std::string& filename)
+	bool Texture::Load(Renderer& renderer, const std::string& filename)
 	{
 		SDL_Surface* surface = IMG_Load(filename.c_str());
 

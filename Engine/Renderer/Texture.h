@@ -1,6 +1,7 @@
 #pragma once
 #include "../Math/Vector2.h"
 #include "Resource/Resource.h"
+#include "Renderer.h"
 #include <string>
 
 struct SDL_Texture;
@@ -18,13 +19,17 @@ namespace anthemum
 
 		bool Create(std::string filename, ...) override;
 		bool CreateFromSurface(SDL_Surface* surface, Renderer& renderer);
-		bool Create(Renderer& renderer, const std::string& filename);
+
+		bool Load(Renderer& renderer, const std::string& filename);
 
 		Vector2 GetSize() const;
 
 		friend class Renderer;
 
 	private:
-		SDL_Texture* m_texture = nullptr;
+		GLuint m_texture;
+		GLenum m_target = GL_TEXTURE_2D;
+		GLuint m_unit = GL_TEXTURE0;
+		//SDL_Texture* m_texture = nullptr;
 	};
 }

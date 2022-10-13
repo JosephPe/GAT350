@@ -4,9 +4,12 @@
 #include "Texture.h"
 #include "Math/Rect.h"
 #include "Math/Matrix3_3.h"
+#include <glad/glad.h>
+#include <SDL.h>
 
 struct SDL_Renderer;
 struct SDL_Window;
+
 
 namespace anthemum
 {
@@ -24,7 +27,7 @@ namespace anthemum
 		void Initialize();
 		void Shutdown();
 
-		void CreateWindow(const char* name, int width, int height);
+		void CreateWindow(const char* name, int width, int height, bool fullscreen);
 		void BeginFrame();
 		void EndFrame();
 		void SetClearColor(const Color& color) { m_clearColor = color; }
@@ -61,5 +64,7 @@ namespace anthemum
 
 		SDL_Renderer* m_renderer = nullptr;
 		SDL_Window* m_window = nullptr;
+
+		SDL_GLContext m_context;
 	};
 }
