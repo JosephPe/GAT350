@@ -9,6 +9,7 @@ struct SDL_Surface;
 
 namespace anthemum
 {
+
 	class Renderer;
 
 	class Texture : public Resource
@@ -20,14 +21,19 @@ namespace anthemum
 		bool Create(std::string filename, ...) override;
 		bool CreateFromSurface(SDL_Surface* surface, Renderer& renderer);
 
-		bool Load(Renderer& renderer, const std::string& filename);
+		bool Load(const std::string& filename, Renderer& renderer);
+
+		void Bind() { glBindTexture(m_target, m_texture); }
 
 		Vector2 GetSize() const;
 
 		friend class Renderer;
 
 	private:
-		GLuint m_texture;
+		void FlipSurface(SDL_Surface* surface);
+
+	private:
+		GLuint m_texture = 0;
 		GLenum m_target = GL_TEXTURE_2D;
 		GLuint m_unit = GL_TEXTURE0;
 		//SDL_Texture* m_texture = nullptr;

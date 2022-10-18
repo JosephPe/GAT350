@@ -1,6 +1,7 @@
 #pragma once
-#include <vector>
+#include "Math/MathUtils.h"
 #include "rapidjson/document.h"
+#include <vector>
 #include <string>
 
 #define READ_DATA(value, data) anthemum::json::Get(value, #data, data)
@@ -25,5 +26,9 @@ namespace anthemum
 		bool Get(const rapidjson::Value& value, const std::string& name, Rect& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, std::vector<std::string>& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, std::vector<int>& data);
+
+		bool Get(const rapidjson::Value& value, const std::string& name, glm::vec2& data);
+		bool Get(const rapidjson::Value& value, const std::string& name, glm::vec3& data);
+		bool Get(const rapidjson::Value& value, const std::string& name, glm::vec4& data);
 	}
 }

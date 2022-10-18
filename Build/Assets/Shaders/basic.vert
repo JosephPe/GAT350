@@ -14,6 +14,6 @@ void main()
 	color = vcolor;
 	uV = vuV;
 
-	vec4 tposition = vec4(vposition, 1.0) * transform;
-	gl_Position = tposition;
+	//vec4 tposition = vec4(vposition, 1.0) * transform;
+	gl_Position = vec4(vposition, 1.0);
 }

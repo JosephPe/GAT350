@@ -1,7 +1,6 @@
 #pragma once
 #include "../Math/Vector2.h"
 #include "../Math/Color.h"
-#include "Texture.h"
 #include "Math/Rect.h"
 #include "Math/Matrix3_3.h"
 #include <glad/glad.h>

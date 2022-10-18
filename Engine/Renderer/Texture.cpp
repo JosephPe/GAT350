@@ -9,7 +9,7 @@ namespace anthemum
 
 	Texture::~Texture()
 	{
-		if (m_texture) SDL_DestroyTexture(m_texture);
+		if (m_texture) glDeleteTextures(1, &m_texture);
 	}
 
 	bool Texture::Create(std::string filename, ...)
@@ -24,42 +24,33 @@ namespace anthemum
 
 		//Renderer* renderer = static_cast<Renderer*>(data);
 		//return Create(*renderer, filename);
-		return Create(renderer, filename);
+		return Load(filename, renderer);
 	}
 
 	bool Texture::CreateFromSurface(SDL_Surface* surface, Renderer& renderer)
 	{
-		if (m_texture) SDL_DestroyTexture(m_texture);
-
-		m_texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
-		SDL_FreeSurface(surface);
-
-		if (m_texture == nullptr)
-		{
-			LOG(SDL_GetError());
-			return false;
-		}
-
 		return true;
 	}
 
-	bool Texture::Load(Renderer& renderer, const std::string& filename)
+	bool Texture::Load(const std::string& filename, Renderer& renderer)
 	{
 		SDL_Surface* surface = IMG_Load(filename.c_str());
 
 		if (surface == nullptr)
 		{
 			LOG(SDL_GetError());
-		}
-
-		m_texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
-		if (m_texture == nullptr)
-		{
-			g_logger.Log(SDL_GetError());
-			SDL_FreeSurface(surface);
-
 			return false;
 		}
+		glGenTextures(1, &m_texture);
+		glBindTexture(m_target, m_texture);
+
+		GLenum format = (surface->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
+		glTexImage2D(m_target, 0, format, surface->w, surface->h, 0, format, GL_UNSIGNED_BYTE, surface->pixels);
+
+		glTexParameteri(m_target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(m_target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(m_target, GL_TEXTURE_WRAP_S, GL_CLAMP);
+		glTexParameteri(m_target, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
 		SDL_FreeSurface(surface);
 
@@ -69,14 +60,29 @@ namespace anthemum
 
 	Vector2 Texture::GetSize() const
 	{
+		return Vector2(0, 0);
+	}
+	void Texture::FlipSurface(SDL_Surface* surface)
+	{
+		SDL_LockSurface(surface);
 
-		SDL_Point point;
-		if (SDL_QueryTexture(m_texture, nullptr, nullptr, &point.x, &point.y) != 0)
-		{
-			g_logger.Log(SDL_GetError());
+		int pitch = surface->pitch; // row size 
+		uint8_t* temp = new uint8_t[pitch]; // intermediate buffer 
+		uint8_t* pixels = (uint8_t*)surface->pixels;
+
+		for (int i = 0; i < surface->h / 2; ++i) {
+			// get pointers to the two rows to swap 
+			uint8_t* row1 = pixels + i * pitch;
+			uint8_t* row2 = pixels + (surface->h - i - 1) * pitch;
+
+			// swap rows 
+			memcpy(temp, row1, pitch);
+			memcpy(row1, row2, pitch);
+			memcpy(row2, temp, pitch);
 		}
 
-		return Vector2(point.x, point.y);
-	}
+		delete[] temp;
 
+		SDL_UnlockSurface(surface);
+	}
 }

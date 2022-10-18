@@ -1,6 +1,7 @@
 #include "Renderer/Renderer.h"
 #include "Math/Vector2.h"
 #include "Math/Transform.h"
+#include "Texture.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
@@ -78,7 +79,7 @@ namespace anthemum
 
 		SDL_Point center{ (int)origin.x, (int)origin.y };
 
-		SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, angle, &center, SDL_FLIP_NONE);
+		//SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, angle, &center, SDL_FLIP_NONE);
 	}
 
 	void Renderer::Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& registration)
@@ -97,7 +98,7 @@ namespace anthemum
 
 		SDL_Point center{ (int)origin.x, (int)origin.y };
 
-		SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, transform.rotation, &center, SDL_FLIP_NONE);
+		//SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, transform.rotation, &center, SDL_FLIP_NONE);
 	}
 
 	void Renderer::Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& registration, bool flipH)
@@ -125,7 +126,7 @@ namespace anthemum
 		SDL_Point center{ (int)origin.x, (int)origin.y };
 
 		SDL_RendererFlip flip = (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
-		SDL_RenderCopyEx(m_renderer, texture->m_texture, &src, &dest, transform.rotation, &center, flip);
+		//SDL_RenderCopyEx(m_renderer, texture->m_texture, &src, &dest, transform.rotation, &center, flip);
 	}
 
 	void Renderer::DrawLine(float x1, float y1, float x2, float y2)

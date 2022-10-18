@@ -18,6 +18,9 @@
 #include "Renderer/Model.h"
 #include "Renderer/Text.h"
 #include "Renderer/Shader.h"
+#include "Renderer/Texture.h"
+#include "Renderer/Program.h"
+#include "Renderer/Material.h"
 
 #include "Input/InputSystem.h"
 
