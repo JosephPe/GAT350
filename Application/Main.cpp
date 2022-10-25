@@ -1,159 +1,113 @@
 #include "Engine.h"
 #include <iostream>
 
-float points[] = {
-	-0.8f, -0.8f,  0.0f,
-   0.8f,  0.8f,  0.0f,
-   -0.8f, 0.8f,  0.0f,
-
-  -0.8f, -0.8f,  0.0f,
-   0.8f,  0.8f,  0.0f,
-   0.8f, -0.8f,  0.0f
-};
-
-glm::vec3 colors[] =
-{
-	{0, 0, 1 },
-	{1, 0, 1 },
-	{1, 1, 1 },
-	{0, 1, 0 },
-	{0, 1, 1 },
-	{1, 1, 0 },
-};
-
-glm::vec2 uV[]
-{
-	{ 0, 0},
-	{ 1, 1},
-	{ 0, 1},
-	{ 0, 0},
-	{ 1, 1},
-	{ 1, 0}
-};
-
 float vertices[] = {
-	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
 
-	-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	-0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	 0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	-0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	-0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
 
-	-0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	-0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
 
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	 0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
 
-	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	 0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	-0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	-0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
 
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f, 0.0f, 1.0f
+	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	 0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+	-0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f
 };
 
 int main(int argc, char** argv)
 {
 	LOG("Application Started...");
 	anthemum::InitializeMemory();
-		anthemum::SetFilePath("../Assets");
+	anthemum::SetFilePath("../Assets");
 
-		anthemum::Engine::Instance().Initialize();
-		anthemum::Engine::Instance().Register();
-		LOG("Engine Initialized...");
+	anthemum::Engine::Instance().Initialize();
+	anthemum::Engine::Instance().Register();
+	LOG("Engine Initialized...");
 
- 		anthemum::g_renderer.CreateWindow("Neumont", 800, 600, false);
-		LOG("Window Initialized");
-		// create vertex buffer
-		GLuint pvbo = 0;
-		glGenBuffers(1, &pvbo);
-		glBindBuffer(GL_ARRAY_BUFFER, pvbo);
-		glBufferData(GL_ARRAY_BUFFER, 18 * sizeof(float), points, GL_STATIC_DRAW);
+	anthemum::g_renderer.CreateWindow("Neumont", 800, 600, false);
+	LOG("Window Initialized");
 
-		GLuint cvbo = 0;
-		glGenBuffers(1, &cvbo);
-		glBindBuffer(GL_ARRAY_BUFFER, cvbo);
-		glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(glm::vec3), colors, GL_STATIC_DRAW);
+	std::shared_ptr<anthemum::VertexBuffer> vb = anthemum::g_resourceManager.Get<anthemum::VertexBuffer>("box");
+	vb->CreateVertexBuffer(sizeof(vertices), 36, vertices);
+	vb->SetAttribute(0, 3, 8 * sizeof(float), 0);
+	vb->SetAttribute(1, 3, 8 * sizeof(float), 3*sizeof(float));
+	vb->SetAttribute(2, 2, 8 * sizeof(float), 6 * sizeof(float));
 
-		GLuint tvbo = 0;
-		glGenBuffers(1, &tvbo);
-		glBindBuffer(GL_ARRAY_BUFFER, tvbo);
-		glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(glm::vec2), uV, GL_STATIC_DRAW);
+	// 
+	//GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+	//glShaderSource(vs, 1, &vertex_shader, NULL);
+	//glCompileShader(vs);
+	//GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+	//glShaderSource(fs, 1, &fragment_shader, NULL);
+	//glCompileShader(fs);
 
-		GLuint vbo = 0;
-		glGenBuffers(1, &vbo);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	// create material 
+	std::shared_ptr<anthemum::Material> material = anthemum::g_resourceManager.Get<anthemum::Material>("materials/box.mtrl");
+	material->Bind();
 
-		// create vertex array
-		GLuint vao = 0;
-		glGenVertexArrays(1, &vao);
-		glBindVertexArray(vao);
-			
-		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, pvbo);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-		
-		glEnableVertexAttribArray(1);
-		glBindBuffer(GL_ARRAY_BUFFER, cvbo);
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-		
-		glEnableVertexAttribArray(2);
-		glBindBuffer(GL_ARRAY_BUFFER, tvbo);
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, NULL);
+	material->GetProgram()->SetUniform("tint", glm::vec3{ 1, 0, 0 });
+	material->GetProgram()->SetUniform("scale", 0.5f);
 
-		// 
-		//GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-		//glShaderSource(vs, 1, &vertex_shader, NULL);
-		//glCompileShader(vs);
-		//GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
-		//glShaderSource(fs, 1, &fragment_shader, NULL);
-		//glCompileShader(fs);
+	//material->GetProgram()->SetUniform("scale", std::sin(anthemum::g_time.time * 3));
 
-		std::shared_ptr<anthemum::Program> program = anthemum::g_resourceManager.Get<anthemum::Program>("shaders/basic.prog");
-		program->Link();
+	glm::mat4 model{ 1 };
+	glm::mat4 projection = glm::perspective(45.0f, anthemum::g_renderer.GetWidth() / (float)anthemum::g_renderer.GetHeight(), 0.01f, 100.0f);
+	glm::vec3 cameraPosition = glm::vec3{ 0, 0, 2 };
 
-		// create material 
-		std::shared_ptr<anthemum::Material> material = anthemum::g_resourceManager.Get<anthemum::Material>("materials/box.mtrl");
-		material->Bind();
-
-		material->GetProgram()->SetUniform("tint", glm::vec3{ 1, 0, 0 });
-		material->GetProgram()->SetUniform("scale", 0.5f);
-
-		glm::mat4 mx{ 1 };
-		material->GetProgram()->SetUniform("scale", std::sin(anthemum::g_time.time * 3));
-		material->GetProgram()->SetUniform("transform", mx);
 
 		// 1 0 0 0
 		// 1 1 0 0
 		// 1 0 1 0
 		// 1 0 0 1
 
+	
+		model = glm::scale(glm::vec3{ 0.5, 0.5, 0.5});
+		float speed = 3;
 
-		//mx = glm::scale(glm::vec3{ 0.5, 0.5, 0.5});
+		std::vector<anthemum::Transform> transforms;
+		for (size_t i = 0; i < 100; i++)
+		{
+			transforms.push_back({ glm::vec3{ anthemum::randomf(-5, 5), anthemum::randomf(-5, 5), anthemum::randomf(-5, 5)}, glm::vec3{ anthemum::randomf(360), anthemum::randomf(360), anthemum::randomf(360)} });
+		}
+
+		//anthemum::Transform transforms[] =
+		//{
+		//	{ {0, 0, 0 }, { 0, 90, 0 } },
+		//	{ {1, 0, 0 }, { 0, 90, 30 } },
+		//	{ {2, 0, -1 }, { 0, 90, 0 } },
+		//	{ {1, 0, 1 }, { 0, 90, 60 } },
+		//};
 
 		bool quit = false;
 		while (!quit)
@@ -161,12 +115,32 @@ int main(int argc, char** argv)
 			anthemum::Engine::Instance().Update();
 			if (anthemum::g_inputSystem.GetKeyState(anthemum::key_escape) == anthemum::InputSystem::keyState::Pressed) quit = true;
 
-			program->SetUniform("scale", std::sin(anthemum::g_time.time * 3));
-			program->SetUniform("transform", mx);
-			mx = glm::eulerAngleXYZ(0, 0, 1);
+			if (anthemum::g_inputSystem.GetKeyState(anthemum::key_a) == anthemum::InputSystem::keyState::held) cameraPosition.x -= speed * anthemum::g_time.deltaTime;
+			if (anthemum::g_inputSystem.GetKeyState(anthemum::key_d) == anthemum::InputSystem::keyState::held) cameraPosition.x += speed * anthemum::g_time.deltaTime;
+			if (anthemum::g_inputSystem.GetKeyState(anthemum::key_w) == anthemum::InputSystem::keyState::held) cameraPosition.y += speed * anthemum::g_time.deltaTime;
+			if (anthemum::g_inputSystem.GetKeyState(anthemum::key_s) == anthemum::InputSystem::keyState::held) cameraPosition.y -= speed * anthemum::g_time.deltaTime;
+
+			glm::mat4 view = glm::lookAt(cameraPosition, cameraPosition + glm::vec3{ 0, 0, -1 }, glm::vec3{0, 1, 0});
+
+			//add input ot move camera
+
+			//glm::mat4 mvp = projection * view * model;
+
+			//model = glm::eulerAngleXYZ(0.0f, anthemum::g_time.time, 0.0f);
+			//program->SetUniform("scale", std::sin(anthemum::g_time.time * 3));
+			//program->SetUniform("transform", mx);
+			//mx = glm::eulerAngleXYZ(0, 0, 1);
 			anthemum::g_renderer.BeginFrame();
 
-			glDrawArrays(GL_TRIANGLES, 0, 6);
+			for (size_t i = 0; i < transforms.size(); i++)
+			{
+				transforms[i].rotation += glm::vec3{ 0, 90 * anthemum::g_time.deltaTime, 0 };
+				glm::mat4 mvp = projection * view * (glm::mat4)transforms[i];
+				material->GetProgram()->SetUniform("mvp", mvp);
+				vb->Draw();
+			}
+
+			//vb->Draw();
 
 			anthemum::g_renderer.EndFrame();
 		}

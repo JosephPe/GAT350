@@ -8,38 +8,37 @@ namespace anthemum
 {
 	struct Transform : public ISerializable
 	{
-		Vector2 position;
-		float rotation{ 0 };
-		Vector2 scale{ 1, 1 };
+		glm::vec3 position{ 0 };
+		glm::vec3 rotation{ 0 };
+		glm::vec3 scale{ 1, 1, 1 };
 		
-		Matrix3_3 matrix;
+		glm::mat4 matrix;
 
+		Transform() = default;
+		Transform(const glm::vec3& position, const glm::vec3& rotation = glm::vec3{ 0 }, const glm::vec3& scale = glm::vec3{ 1 }) :
+			position{ position },
+			rotation{ rotation },
+			scale{ scale }
+		{}
+		
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 
 		void Update()
 		{
-			Matrix3_3 mxScale = Matrix3_3::CreateScale(scale);
-			Matrix3_3 mxRotation = Matrix3_3::CreateRotation(math::DegToRad(rotation));
-			Matrix3_3 mxTranslation = Matrix3_3::CreateTranslation(position);
+			matrix = *this;
+		}
 
-			matrix = { mxTranslation * mxRotation * mxScale };
-		}	
-		void Update(const Matrix3_3 parent)
+		void Update(const glm::mat4 parent)
 		{
-			Matrix3_3 mxScale = Matrix3_3::CreateScale(scale);
-			Matrix3_3 mxRotation = Matrix3_3::CreateRotation(math::DegToRad(rotation));
-			Matrix3_3 mxTranslation = Matrix3_3::CreateTranslation(position);
-
-			matrix = { mxTranslation * mxRotation * mxScale };
-			matrix = parent * matrix;
+			matrix = parent * (glm::mat4)*this;
 		}
 		
-		operator Matrix3_3() const
+		operator glm::mat4() const
 		{
-			Matrix3_3 mxScale = Matrix3_3::CreateScale(scale);
-			Matrix3_3 mxRotation = Matrix3_3::CreateRotation(math::DegToRad(rotation));
-			Matrix3_3 mxTranslation = Matrix3_3::CreateTranslation(position);
+			glm::mat4 mxScale = glm::scale(scale);
+			glm::mat4 mxRotation = glm::eulerAngleXYZ(glm::radians(rotation.x), glm::radians(rotation.y), glm::radians(rotation.z));
+			glm::mat4 mxTranslation = glm::translate(position);
 			return { mxTranslation * mxRotation * mxScale };
 		}
 		

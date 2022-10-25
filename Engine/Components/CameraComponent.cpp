@@ -12,10 +12,10 @@ namespace anthemum
     void CameraComponent::Update()
     {
         // create camera view matrix 
-        Matrix3_3 mxTranslation = Matrix3_3::CreateTranslation(-m_owner->m_transform.position);
-        Matrix3_3 mxRotation = Matrix3_3::CreateRotation(-math::DegToRad(m_owner->m_transform.rotation));
+        //Matrix3_3 mxTranslation = Matrix3_3::CreateTranslation(-m_owner->m_transform.position);
+        //Matrix3_3 mxRotation = Matrix3_3::CreateRotation(-math::DegToRad(m_owner->m_transform.rotation));
 
-        m_view = mxTranslation * mxRotation;
+        //m_view = mxTranslation * mxRotation;
 
         g_renderer.SetViewMatrix(m_view);
     }

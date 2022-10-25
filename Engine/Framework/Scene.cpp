@@ -35,13 +35,13 @@ namespace anthemum
 
 					float radius = (*iter1)->GetRadius() + (*iter2)->GetRadius();
 
-					float distance = (*iter1)-> m_transform.position.Distance((*iter2) ->m_transform.position.Distance(( * iter1)->m_transform.position));
+					//float distance = (*iter1)-> m_transform.position.Distance((*iter2) ->m_transform.position.Distance(( * iter1)->m_transform.position));
 
-					if (distance < radius)
-					{
-						(*iter1)->OnCollision((*iter2).get());
-						(*iter2)->OnCollision((*iter1).get());
-					}
+					//if (distance < radius)
+					//{
+						//(*iter1)->OnCollision((*iter2).get());
+						//(*iter2)->OnCollision((*iter1).get());
+					//}
 				}
 
 			}

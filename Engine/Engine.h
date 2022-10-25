@@ -21,6 +21,7 @@
 #include "Renderer/Texture.h"
 #include "Renderer/Program.h"
 #include "Renderer/Material.h"
+#include "Renderer/VertexBuffer.h"
 
 #include "Input/InputSystem.h"
 

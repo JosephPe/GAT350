@@ -173,6 +173,9 @@
     <ClCompile Include="Renderer\Material.cpp">
       <Filter>Sources\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\VertexBuffer.cpp">
+      <Filter>Sources\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\MathUtils.h">
@@ -335,6 +338,9 @@
       <Filter>Sources\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\Material.h">
+      <Filter>Sources\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\VertexBuffer.h">
       <Filter>Sources\Renderer</Filter>
     </ClInclude>
   </ItemGroup>

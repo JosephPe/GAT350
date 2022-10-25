@@ -110,14 +110,14 @@ namespace anthemum
 
 	void Program::SetUniform(const std::string& name, int value)
 	{
-		GLint glUniform1i;
-		GLint v0;
+		GLint uniform = GetUniform(name);
+		if (uniform != -1) glUniform1i(uniform, value);
 	}
 
 	void Program::SetUniform(const std::string& name, unsigned int value)
 	{
-		GLint glUniform1f;
-		GLfloat v0;
+		GLint uniform = GetUniform(name);
+		if (uniform != -1) glUniform1ui(uniform, value);
 	}
 
 	void Program::SetUniform(const std::string& name, bool value)
@@ -126,10 +126,14 @@ namespace anthemum
 
 	void Program::SetUniform(const std::string& name, const glm::vec2& value)
 	{
+		GLint uniform = GetUniform(name);
+		if (uniform != -1) glUniform2fv(uniform, 1, &value[0]);
 	}
 
 	void Program::SetUniform(const std::string& name, const glm::vec4& value)
 	{
+		GLint uniform = GetUniform(name);
+		if (uniform != -1) glUniform4fv(uniform, 1, &value[0]);
 	}
 
 	void Program::SetUniform(const std::string& name, const glm::mat3& value)

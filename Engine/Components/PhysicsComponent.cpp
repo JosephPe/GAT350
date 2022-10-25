@@ -13,7 +13,7 @@ namespace anthemum
 	void PhysicsComponent::Update()
 	{
 		velocity += acceleration * g_time.deltaTime;
-		m_owner->m_transform.position += velocity * g_time.deltaTime;
+		//m_owner->m_transform.position += velocity * g_time.deltaTime;
 		velocity *= damping;
 
 		acceleration = Vector2::zero;

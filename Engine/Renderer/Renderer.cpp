@@ -84,36 +84,39 @@ namespace anthemum
 
 	void Renderer::Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& registration)
 	{
+		/*
 		Vector2 size = texture->GetSize();
-		size = size * transform.scale;
+		//size = size * transform.scale;
 
 		Vector2 origin = size * registration;
-		Vector2 tposition = transform.position - origin;
+		//Vector2 tposition = transform.position - origin;
 
 		SDL_Rect dest;
-		dest.x = (int)(tposition.x);
-		dest.y = (int)(tposition.y);
-		dest.w = (int)(size.x);
-		dest.h = (int)(size.y);
+		//dest.x = (int)(tposition.x);
+		//dest.y = (int)(tposition.y);
+		//dest.w = (int)(size.x);
+		//dest.h = (int)(size.y);
 
 		SDL_Point center{ (int)origin.x, (int)origin.y };
 
 		//SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, transform.rotation, &center, SDL_FLIP_NONE);
+		*/
 	}
 
 	void Renderer::Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& registration, bool flipH)
 	{
-		Matrix3_3 mx = m_viewport * m_view * transform.matrix;
+		/*
+		//Matrix3_3 mx = m_viewport * m_view * transform.matrix;
 
 		Vector2 size = Vector2{ source.w, source.h };
-		size = size * mx.GetScale();
+		//size = size * mx.GetScale();
 
 		Vector2 origin = (size * registration);
-		Vector2 tposition = mx.GetTranslation() - origin;
+		//Vector2 tposition = mx.GetTranslation() - origin;
 
 		SDL_Rect dest;
-		dest.x = (int)(tposition.x);
-		dest.y = (int)(tposition.y);
+		//dest.x = (int)(tposition.x);
+		//dest.y = (int)(tposition.y);
 		dest.w = (int)(size.x);
 		dest.h = (int)(size.y);
 
@@ -127,18 +130,17 @@ namespace anthemum
 
 		SDL_RendererFlip flip = (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
 		//SDL_RenderCopyEx(m_renderer, texture->m_texture, &src, &dest, transform.rotation, &center, flip);
+		*/
 	}
 
 	void Renderer::DrawLine(float x1, float y1, float x2, float y2)
 	{
 		SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
-
 		SDL_RenderDrawLineF(m_renderer, x1, y1, x2, y2);
 	}
 	void Renderer::DrawLine(const Vector2& v1, const Vector2& v2, const Color& color)
 	{
 		SDL_SetRenderDrawColor(m_renderer, color.r, color.g, color.b, color.a);
-
 		SDL_RenderDrawLineF(m_renderer, v1.x, v1.y, v2.x, v2.y);
 	}
 	void Renderer::DrawPoint(float x, float y)
@@ -148,9 +150,7 @@ namespace anthemum
 	}
 	void Renderer::DrawPoint(const Vector2& v, const Color& color)
 	{
-
 		SDL_SetRenderDrawColor(m_renderer, color.r, color.g, color.b, color.a);
 		SDL_RenderDrawPointF(m_renderer,v.x, v.y);
 	}
-
 }

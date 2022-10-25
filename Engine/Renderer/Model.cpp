@@ -40,16 +40,16 @@ namespace anthemum
 	}
 	void Model::Draw(Renderer& renderer, const Transform& transform)
 	{
-		Matrix3_3 mx = transform.matrix;
+		//Matrix3_3 mx = transform.matrix;
 		//if (m_points.size() == 0) return;
 
-		for (int i = 0; i < m_points.size() - 1; i++)
-		{
-			anthemum::Vector2 p1 = mx * m_points[i];
-			anthemum::Vector2 p2 = mx * m_points[i + 1];
+		//for (int i = 0; i < m_points.size() - 1; i++)
+		//{
+			//anthemum::Vector2 p1 = mx * m_points[i];
+			//anthemum::Vector2 p2 = mx * m_points[i + 1];
 
-			renderer.DrawLine(p1, p2, m_color);
-		}
+			//renderer.DrawLine(p1, p2, m_color);
+		//}
 	}
 	bool Model::Load(const std::string& filename)
 	{
@@ -83,7 +83,7 @@ namespace anthemum
 		}
 		return true;
 	}
-
+	
 	float Model::CalculateRadius()
 	{
 		float radius = 0;
@@ -95,5 +95,6 @@ namespace anthemum
 
 		return radius;
 	}
+	
 }
 
