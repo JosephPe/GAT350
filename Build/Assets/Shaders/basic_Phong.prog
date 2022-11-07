@@ -1,0 +1,4 @@
+{
+	"vertex_shader": "Shaders/basic - phong.vert",
+	"fragment_shader": "Shaders/basic - phong.frag"
+}

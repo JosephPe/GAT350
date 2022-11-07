@@ -37,6 +37,7 @@
 #include "Core/Timer.h"
 #include "Core/SingleTon.h"
 #include "Core/Logger.h"
+#include "Core/Utilities.h"
 
 #include "Components/SpriteComponent.h"
 #include "Components/PlayerComponent.h"
@@ -49,6 +50,8 @@
 #include "Components/TilemapComponent.h"
 #include "Components/CharacterComponent.h"
 #include "Components/CameraComponent.h"
+#include "Components/CameraController.h"
+#include "Components/LightComponent.h"
 
 #include <memory>
 #include <variant>

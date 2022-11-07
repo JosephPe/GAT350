@@ -3,6 +3,7 @@
 #include "../Math/Color.h"
 #include "Math/Rect.h"
 #include "Math/Matrix3_3.h"
+#include "Math/MathUtils.h"
 #include <glad/glad.h>
 #include <SDL.h>
 
@@ -40,8 +41,14 @@ namespace anthemum
 		void DrawPoint(float x, float y);
 		void DrawPoint(const Vector2& v, const Color& color);
 
-		void SetViewMatrix(const Matrix3_3 view) { m_view = view; }
-		void SetViewportMatrix(const Matrix3_3& viewport) { m_viewport = viewport; }
+		//void SetViewMatrix(const Matrix3_3 view) { m_view = view; }
+		//void SetViewportMatrix(const Matrix3_3& viewport) { m_viewport = viewport; }
+
+		const glm::mat4& GetView() { return m_view; }
+		void SetView(const glm::mat4& view) { m_view = view; }
+
+		const glm::mat4& GetProjection() { return m_projection; }
+		void SetProjection(const glm::mat4& projection) { m_projection = projection; }
 
 		int GetWidth() { return m_width; }
 		int GetHeight() { return m_height;}
@@ -53,8 +60,8 @@ namespace anthemum
 		friend class Texture;
 		friend class Text;
 	private:
-		Matrix3_3 m_view;
-		Matrix3_3 m_viewport;
+		glm::mat4 m_view{ 1 };
+		glm::mat4 m_projection{ 1 };
 
 		int m_width = 0;
 		int m_height = 0;
